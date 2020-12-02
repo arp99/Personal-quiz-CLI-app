@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/arp99/Personal-quiz-CLI-app/issues"
   },
-  "homepage": "https://github.com/arp99/Personal-quiz-CLI-app#readme"
+  "homepage": "https://github.com/arp99/Personal-quiz-CLI-app#readme",
+  "dependencies": {
+    "readline-sync": "^1.4.10"
+  }
 }
