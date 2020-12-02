@@ -102,3 +102,31 @@ const questions = [
         correctAns: 'c'
     }
 ]
+
+function quizPlay(){
+    let currScore = 0,ans,Qno = 1;
+    
+    const name = readLineSync.question('What is your name? ');
+    console.log(`Welcome ${name}! Come let's see how much you know Arpan...`);
+
+    for(let i = 0;i<questions.length;i++){
+        console.log(`\n${Qno++}. ${questions[i].question}\n`);
+    
+        console.log(`a: ${questions[i].options.a}\nb: ${questions[i].options.b}\nc: ${questions[i].options.c}\nd: ${questions[i].options.d}`)
+        ans = readLineSync.question('Enter your choice: ');
+        if(ans.toLowerCase() === questions[i].correctAns){
+            console.log('\nCorrect Answer!');
+            console.log('--------------------');
+            currScore+=1;
+            console.log(`Current Score: ${currScore}`);
+        }else{
+            console.log('\nWrong Answer!');
+            console.log('--------------------');
+            console.log(`Correct answer: ${questions[i].correctAns}`);
+            console.log(`Current Score: ${currScore}`);
+        }
+    }
+    console.log(`Yayy!! Your total Score: ${currScore}`);    
+}
+
+quizPlay();
