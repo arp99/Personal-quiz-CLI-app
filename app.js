@@ -1,4 +1,5 @@
 const readLineSync = require('readline-sync');
+const chalk = require('chalk');
 
 const questions = [
     {
@@ -106,23 +107,24 @@ const questions = [
 function quizPlay(){
     let currScore = 0,ans,Qno = 1;
     
-    const name = readLineSync.question('What is your name? ');
-    console.log(`Welcome ${name}! Come let's see how much you know Arpan...`);
+    const name = readLineSync.question(chalk.redBright.bold('What is your name? '));
+    console.log(chalk.green.bold(chalk`Welcome {red ${name}}! Come let's see how much you know Arpan...`));
 
     for(let i = 0;i<questions.length;i++){
-        console.log(`\n${Qno++}. ${questions[i].question}\n`);
-    
-        console.log(`a: ${questions[i].options.a}\nb: ${questions[i].options.b}\nc: ${questions[i].options.c}\nd: ${questions[i].options.d}`)
+        console.log(chalk.bold`\n${Qno++}.{blue ${questions[i].question}}\n`);
+
+        let bgR = chalk.bgRedBright.bold,colYel = chalk.yellowBright;
+        console.log(`${bgR('a:')} ${colYel(questions[i].options.a)}\n${bgR('b:')} ${colYel(questions[i].options.b)}\n${bgR('c:')} ${colYel(questions[i].options.c)}\n${bgR('d:')} ${colYel(questions[i].options.d)}`);
         ans = readLineSync.question('Enter your choice: ');
         if(ans.toLowerCase() === questions[i].correctAns){
-            console.log('\nCorrect Answer!');
-            console.log('--------------------');
+            console.log(chalk.greenBright('\nCorrect Answer!'));
+            console.log(chalk.greenBright('--------------------'));
             currScore+=1;
             console.log(`Current Score: ${currScore}`);
         }else{
-            console.log('\nWrong Answer!');
-            console.log('--------------------');
-            console.log(`Correct answer: ${questions[i].correctAns}`);
+            console.log(chalk.redBright('\nWrong Answer!'));
+            console.log(chalk.redBright('--------------------'));
+            console.log(chalk.cyanBright`Correct answer: ${questions[i].correctAns}`);
             console.log(`Current Score: ${currScore}`);
         }
     }
